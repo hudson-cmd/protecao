@@ -1,5 +1,6 @@
-#!/bin/sh
+#!/bin/bash
 set -e
+export TERM=${TERM:-xterm}
 
 usage() {
 	echo "$0: configura e instala as dependencias de seguranca e monitoria"
