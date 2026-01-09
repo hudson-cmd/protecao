@@ -1,14 +1,17 @@
 ---
-- name: Executar install.sh via AWX
+- name: Instalacao protecao via AWX
   hosts: all
   become: true
-  tasks:
+  gather_facts: false
 
-    - name: Copiar install.sh para o servidor
+  tasks:
+    - name: Copiar install.sh do Git para o servidor
       ansible.builtin.copy:
         src: install.sh
-        dest: /tmp/install.sh
+        dest: /tmp/protecao-install.sh
         mode: '0755'
 
-    - name: Executar script no servidor
-      ansible.builtin.shell: /tmp/install.sh
+    - name: Executar instalacao
+      ansible.builtin.shell: bash /tmp/protecao-install.sh install
+      environment:
+        TERM: xterm
