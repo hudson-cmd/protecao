@@ -1,15 +1,14 @@
 ---
-- name: Executar install.sh do projeto protecao
+- name: Executar install.sh via AWX
   hosts: all
   become: true
   tasks:
 
-    - name: Garantir permissao de execucao no install.sh
-      file:
-        path: "{{ playbook_dir }}/install.sh"
+    - name: Copiar install.sh para o servidor
+      ansible.builtin.copy:
+        src: install.sh
+        dest: /tmp/install.sh
         mode: '0755'
 
-    - name: Executar install.sh
-      shell: ./install.sh
-      args:
-        chdir: "{{ playbook_dir }}"
+    - name: Executar script no servidor
+      ansible.builtin.shell: /tmp/install.sh
