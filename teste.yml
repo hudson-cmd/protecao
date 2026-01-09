@@ -1,0 +1,11 @@
+---
+- hosts: all
+  gather_facts: false
+  tasks:
+
+    - name: Mostrar playbook_dir
+      debug:
+        var: playbook_dir
+
+    - name: Listar tudo no playbook_dir
+      command: ls -la "{{ playbook_dir }}"
