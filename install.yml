@@ -1,0 +1,15 @@
+---
+- name: Executar install.sh do projeto protecao
+  hosts: all
+  become: true
+  tasks:
+
+    - name: Garantir permissao de execucao
+      file:
+        path: "{{ playbook_dir }}/../install.sh"
+        mode: '0755'
+
+    - name: Executar script
+      shell: ./install.sh
+      args:
+        chdir: "{{ playbook_dir }}/.."
