@@ -4,12 +4,12 @@
   become: true
   tasks:
 
-    - name: Garantir permissao de execucao
+    - name: Garantir permissao de execucao no install.sh
       file:
-        path: "{{ playbook_dir }}/../install.sh"
+        path: "{{ playbook_dir }}/install.sh"
         mode: '0755'
 
-    - name: Executar script
+    - name: Executar install.sh
       shell: ./install.sh
       args:
-        chdir: "{{ playbook_dir }}/.."
+        chdir: "{{ playbook_dir }}"
